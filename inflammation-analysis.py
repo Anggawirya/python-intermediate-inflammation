@@ -2,7 +2,7 @@
 """Software for managing and analysing patients' inflammation data in our imaginary hospital."""
 
 import argparse
-
+import pytest
 from inflammation import models, views
 
 
@@ -37,3 +37,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args)
+
+def test_daily_min_string():
+    """Test for TypeError when passing strings"""
+    from inflammation.models import daily_min
+
+    with pytest.raises(TypeError):
+        error_expected = daily_min([['Hello', 'there'], ['General', 'Kenobi']])
